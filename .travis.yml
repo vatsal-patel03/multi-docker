@@ -3,13 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t vatsal-patel03/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t vatsalp0310/react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run vatsal-patel03/react-test npm test -- --coverage
+  - docker run vatsalp0310/react-test npm test -- --coverage
 
 after_success: 
-  - docker build -t vatsal-patel03/multi-client ./client 
-  - docker build -t vatsal-patel03/multi-nginx ./nginx
-  - docker build -t vatsal-patel03/multi-server ./server
-  - docker build -t vatsal-patel03/multi-worker ./worker
+  - docker build -t vatsalp0310/multi-client ./client 
+  - docker build -t vatsalp0310/multi-nginx ./nginx
+  - docker build -t vatsalp0310/multi-server ./server
+  - docker build -t vatsalp0310/multi-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push vatsalp0310/multi-client
+  - docker push vatsalp0310/multi-nginx
+  - docker push vatsalp0310/multi-server
+  - docker push vatsalp0310/multi-worker
