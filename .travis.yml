@@ -20,3 +20,4 @@ after_success:
   - docker push vatsalp0310/multi-nginx
   - docker push vatsalp0310/multi-server
   - docker push vatsalp0310/multi-worker
+  
